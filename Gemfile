@@ -32,7 +32,10 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
-gem "github-pages", "~> 226", group: :jekyll_plugins
+source "https://rubygems.org"
+
+gem "github-pages", group: :jekyll_plugins
+gem "jekyll-include-cache", group: :jekyll_plugins
 
 gem "minimal-mistakes-jekyll"
 gem "webrick", "~> 1.7"
