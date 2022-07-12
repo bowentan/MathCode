@@ -1,0 +1,59 @@
+{% if paginator.total_pages > 1 %}
+<nav class="pagination">
+    <ul>
+        {%- comment -%} Previous button {%- endcomment -%}
+        {% if paginator.previous_page %}
+        <li>
+            <a href="{{ paginator.previous_page_path }}">Previous</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="#" class="disabled">
+                <span aria-hidden="true">Previous</span>
+            </a>
+        </li>
+        {% endif %}
+
+        {%- comment -%} Indices {%- endcomment -%}
+        <li>
+            <input type="text" name="current_index" id="current_index" value="{{ paginator.page }}">
+        </li>
+        <li>/</li>
+        <li id="total_pages">
+            {{ paginator.total_pages }}
+        </li>
+
+        {%- comment -%} Next button {%- endcomment -%}
+        {% if paginator.next_page %}
+        <li>
+            <a href="{{ paginator.next_page_path }}">Next</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="#" class="disabled">
+                <span aria-hidden="true">Next</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<script>
+    let n_pages = {{ paginator.total_pages }};
+    document.getElementById("current_index").addEventListener("change", (event) => {
+        if (event.target.value != {{ paginator.page }} && event.target.value <= n_pages) {
+            let href = window.location.href;
+            if (event.target.value == 1) {
+                href = href.replace(/page.*/g, "");
+            } else {
+                if (href.includes("page")) {
+                    href = href.replace(/page.*/, "page" + event.target.value);
+                } else {
+                    href += "/page" + event.target.value;
+                }
+            }
+            window.location.href = href;
+        }
+    });
+</script>
+{% endif %}

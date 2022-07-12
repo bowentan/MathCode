@@ -1,0 +1,29 @@
+blockquote {
+    font-style: normal;
+}
+
+.pagination {
+    text-align: center;
+
+    ul {
+        display: inline-block;
+        
+        li {
+            input {
+                margin-left: 0.5em;
+                margin-right: 0.5em;
+                padding: 0.2em;
+                width: 2em;
+                text-align: center;
+                background-color: white;
+                color: black;
+            }
+        }
+
+        #total_pages {
+            text-align: center;
+            margin-right: 0.5em;
+            margin-left: 0.5em;
+        }
+    }    
+}

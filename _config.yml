@@ -18,23 +18,55 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
+title: MathCode
+email: notebowentan@gmail.com
+author:
+  name     : Bowen Tan
+  avatar   : "/assets/images/utaha.jpeg"
+  bio      : "Research student at City University of Hong Kong. Mainly focus on algorithms and machine learning"
+  location : "Hong Kong"
+  links:
+    - label: "GitHub"
+      icon : "fab fa-fw fa-github"
+      url  : "https://github.com/bowentan"
+
+logo: "/assets/images/logo.png"
+repository: bowentan/bowentan.github.io
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Share mathematical problems, coding ideas and thinking.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+# twitter_username: jekyllrb
+github_username:  bowentan
 
 # Build settings
-# theme: minimal-mistakes-jekyll
-remote_theme: "mmistakes/minimal-mistakes"
+theme: minimal-mistakes-jekyll
+# remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: dark
+markdown: kramdowns
 plugins:
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-paginate-multiple
+paginate_multiple:
+  - paginate: 5
+    paginate_path: "/leetcode/page:num"
+    sub_dir: "/leetcode"
+  - paginate: 5
+    paginate_path: "/challenge/page:num"
+    sub_dir: "/challenge"
+  - paginate: 5
+    paginate_path: "/practice/page:num"
+    sub_dir: "/practice"
+locale: en
+
+permalink: /:categories/:title/
+breadcrumbs: true
+paginate: 5
+
+include: ["_pages"]
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -55,3 +87,38 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+defaults:
+# _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      show_date: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      author_profile: true
+      show_tags: true
+      show_category: true
+  # _home
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: home
+      author_profile: true
+
+comments:
+  provider: disqus
+  disqus:
+    shortname: "ce2"

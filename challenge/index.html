@@ -1,0 +1,10 @@
+---
+layout: category
+title: Challenge
+---
+
+{% for post in paginator.posts %}
+    {% include archive-single.html type=entries_layout %}
+{% endfor %}
+
+{% include paginator_multiple.html %}
