@@ -128,3 +128,9 @@ comments:
   provider: "disqus"
   disqus:
     shortname: "mathcode-1"
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-81FLSX9P1D"
+    anonymize_ip: false # default
