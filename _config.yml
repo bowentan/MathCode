@@ -35,7 +35,7 @@ repository: bowentan/bowentan.github.io
 description: >- # this means to ignore newlines until "baseurl:"
   Share mathematical problems, coding ideas and thinking.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://bowentan.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 github_username:  bowentan
 
