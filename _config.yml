@@ -40,8 +40,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  bowentan
 
 # Build settings
-# theme: minimal-mistakes-jekyll
-remote_theme: "mmistakes/minimal-mistakes"
+theme: minimal-mistakes-jekyll
+# remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: dark
 # remote_minimal_mistakes_skin: dark
 markdown: kramdowns
@@ -111,6 +111,10 @@ defaults:
       author_profile: true
       show_tags: true
       show_category: true
+      usemathjax: true
+      toc: true
+      toc_label: Contents
+      toc_sticky: true
   # _home
   - scope:
       path: ""

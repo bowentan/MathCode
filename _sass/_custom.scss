@@ -27,3 +27,24 @@ blockquote {
         }
     }    
 }
+
+code.language-plaintext {
+    background: #404040;
+    color: white;
+}
+
+.author__avatar {
+    text-align: center;
+
+    img {
+        max-width: 250px;
+    }
+}
+
+pre.highlight {
+    white-space: pre-wrap;
+}
+
+/* Gist */
+@import url('https://cdn.rawgit.com/lonekorean/gist-syntax-themes/848d6580/stylesheets/monokai.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
