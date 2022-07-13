@@ -2,7 +2,7 @@
 title: LeetCode Prob.1 Two sum
 category: leetcode
 tags: array hashtable
-date: 2022-07-13 15:58:00
+date: 2022-07-13 15:58:00 +0800
 ---
 
 # Problem statement

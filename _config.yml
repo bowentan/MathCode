@@ -62,6 +62,7 @@ paginate_multiple:
     paginate_path: "/practice/page:num"
     sub_dir: "/practice"
 locale: en
+timezone: Hongkong
 
 permalink: /:categories/:title/
 breadcrumbs: true
