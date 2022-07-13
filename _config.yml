@@ -125,6 +125,6 @@ defaults:
       author_profile: true
 
 comments:
-  provider: disqus
+  provider: "disqus"
   disqus:
     shortname: "mathcode-1"
