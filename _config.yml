@@ -127,4 +127,4 @@ defaults:
 comments:
   provider: disqus
   disqus:
-    shortname: "ce2"
+    shortname: "mathcode-1"
