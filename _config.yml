@@ -31,7 +31,7 @@ author:
       url  : "https://github.com/bowentan"
 
 logo: "/assets/images/logo.png"
-repository: bowentan/bowentan.github.io
+# repository: bowentan/bowentan.github.io
 description: >- # this means to ignore newlines until "baseurl:"
   Share mathematical problems, coding ideas and thinking.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -40,8 +40,8 @@ url: "https://gh-pages.d82zyvddnpjsw.amplifyapp.com" # the base hostname & proto
 github_username:  bowentan
 
 # Build settings
-# theme: minimal-mistakes-jekyll
-remote_theme: "mmistakes/minimal-mistakes"
+theme: minimal-mistakes-jekyll
+# remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: dark
 # remote_minimal_mistakes_skin: dark
 markdown: kramdown
