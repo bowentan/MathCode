@@ -8,6 +8,7 @@ source "https://rubygems.org"
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
 # gem "jekyll", "~> 4.2.2"
+ruby "~> 3.1.2"
 gem "jekyll"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 # gem "minima", "~> 2.5"
@@ -36,8 +37,6 @@ gem "wdm", :platforms => [:mingw, :x64_mingw, :mswin]
 # do not have a Java counterpart.
 # gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 gem "http_parser.rb", :platforms => [:jruby]
-
-source "https://rubygems.org"
 
 # gem "github-pages", group: :jekyll_plugins
 gem "jekyll-include-cache", group: :jekyll_plugins
