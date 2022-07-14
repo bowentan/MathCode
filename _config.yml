@@ -44,7 +44,7 @@ github_username:  bowentan
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: dark
 # remote_minimal_mistakes_skin: dark
-markdown: kramdowns
+markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-include-cache
