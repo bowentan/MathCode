@@ -61,6 +61,9 @@ paginate_multiple:
   - paginate: 5
     paginate_path: "/practice/page:num"
     sub_dir: "/practice"
+  - paginate: 5
+    paginate_path: "/project/page:num"
+    sub_dir: "/project"
 locale: en
 timezone: Hongkong
 
