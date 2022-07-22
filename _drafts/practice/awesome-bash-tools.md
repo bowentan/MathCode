@@ -7,13 +7,7 @@ toc_label: Contents
 toc_sticky: true
 ---
 
-For 
-
-# P1
-
-# P2
-
-# P3 
-# P5
-# P5
-# P6
+# Oh my zsh
+...
+## PowerLevel10k theme
+...
