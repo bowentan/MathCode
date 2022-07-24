@@ -108,7 +108,7 @@ defaults:
     values:
       layout: single
       show_date: true
-      read_time: true
+      # read_time: true
       comments: true
       share: true
       related: true

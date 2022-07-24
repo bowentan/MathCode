@@ -2,6 +2,7 @@
 title: Install and configure SLURM with cgroup and MariaDB on Ubuntu 20.04
 category: practice
 tags: ubuntu slurm cgroup mysql mariadb
+date: 2022-07-24 12:52:00 +0800
 ---
 
 # Overview
@@ -14,16 +15,16 @@ Here, I will share the steps to install and configure SLURM with the cgroup plug
 # cgroup
 ## Install
 At first, before installing cgroup, we need to update the system repository:
-```shell
-apt update
+```console
+$ apt update
 ```
 then install the cgroup package.
-```shell
-apt install cgroup-tools
+```console
+$ apt install cgroup-tools
 ```
 After that, copy the default `cgred.conf` to the `/etc` directory.
-```shell
-cp /usr/share/doc/cgroup-tools/examples/cgred.conf /etc
+```console
+$ cp /usr/share/doc/cgroup-tools/examples/cgred.conf /etc
 ```
 
 ## Configure
@@ -45,9 +46,9 @@ The `cpu` part throws a limitation such that only 2 CPUs can be used by the grou
 user1       cpu,memory              g1
 ```
 With `cgconfig.conf` and `cgrules.conf` done, we want to test and make them take effect by executing
-```shell
-cgconfigparser -l /etc/cgconfig.conf
-cgrulesengd -vvv
+```console
+$ cgconfigparser -l /etc/cgconfig.conf
+> cgrulesengd -vvv
 ```
 Without errors, we can make them as system services and the following are my system service files.
 ```
@@ -83,52 +84,52 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 Then reload systemd and enable the services.
-```shell
-systemctl daemon-reload
-systemctl enable cgconfigparser
-systemctl enable cgrulesgend
-systemctl start cgconfigparser
-systemctl start cgrulesgend
+```console
+$ systemctl daemon-reload
+$ systemctl enable cgconfigparser
+$ systemctl enable cgrulesgend
+$ systemctl start cgconfigparser
+$ systemctl start cgrulesgend
 ```
 
 Another way to create group is via the cgroup command line tools. To create group with `cpu` subsystem and set limitations
-```shell
-cgcreate -g cpu:g1
-cgset g1 -r cpu.cfs_period_us=100000 -r cpu.cfs_quota_us=200000
+```console
+$ cgcreate -g cpu:g1
+$ cgset g1 -r cpu.cfs_period_us=100000 -r cpu.cfs_quota_us=200000
 ```
 To test the cgroup against CPU, we can use `stress` package. After installing `stress` by the following
-```shell
-apt install stress
+```console
+$ apt install stress
 ```
 we can use it to test against CPU usage by
-```shell
-cgexec -g cpu:g1 stress --cpu 32
+```console
+$ cgexec -g cpu:g1 stress --cpu 32
 ```
 You can specify the `--cpu` argument by your number.
 
 # MariaDB
 ## Install
 To intall MariaDB, just execute
-```shell
-apt install mariadb-server -y
+```console
+$ apt install mariadb-server -y
 ```
 and then enable and start the service
-```shell
-systemctl enable mariadb
-service mariadb start
+```console
+$ systemctl enable mariadb
+$ service mariadb start
 ```
 You may setup the MariaDB further for the root access by
-```shell
-mysql_secure_installation
+```console
+$ mysql_secure_installation
 ```
 and follow the instruction to complete the installation.
 
 ## Configure for SLURM
 For SLURM support, we should create a slurm user in database for further configuration in SLURM.
-```shell
-mysql -u root -p
-grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'some_pass' with grant option;
-create database slurm_acct_db;
+```console
+$ mysql -u root -p
+> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'some_pass' with grant option;
+> create database slurm_acct_db;
 ```
 
 **!!!IMPORTANT!!!** For SlurmDBD plugin, some parameters of `innodb` should be modified, otherwise there will be some errors when starting the slurmdbd. Create a file `/etc/mysql/conf.d/innodb.cnf` and add the following to it.
@@ -142,8 +143,8 @@ create database slurm_acct_db;
 # SLURM
 ## Install
 Install `slurmd`, `slurmctld` and `slurmdbd`
-```shell
-apt install slurmd slurmctld slurmdbd
+```console
+$ apt install slurmd slurmctld slurmdbd
 ```
 
 ## Configure `cgroup.conf`
@@ -160,7 +161,6 @@ ConstrainRAMSpace=yes
 ## Configure `slurmdbd.conf`
 There are various settings for the slurmdbd, here I give my setting for my server.
 ```
-#
 # Example slurmdbd.conf file.
 #
 # See the slurmdbd.conf man page for more information.
@@ -358,10 +358,10 @@ PartitionName=test Nodes=ALL Default=no PriorityTier=100 QoS=testqos MaxTime=INF
 The important parts are `AccountingStorage*` and the compute nodes in the final lines. If you want to use `sacctmgr` to get more controls, you should do that carefully. To get the information such as CPUs and memory, you can use `slurmd -C`.
 
 After all configuration files done, we should start/restart all the related services.
-```shell
-service slurmdbd restart
-service slurmctld restart
-service slurmd restart
+```console
+$ service slurmdbd restart
+$ service slurmctld restart
+$ service slurmd restart
 ```
 
 You may come across the problem that `slurmctld` cannot start with the error.
@@ -369,10 +369,10 @@ You may come across the problem that `slurmctld` cannot start with the error.
 fatal: mkdir(/var/spool/slurmctld): Permission denied
 ```
 To solve this, do following:
-```shell
-mkdir /var/spool/slurmctld
-chmod 755 -R /var/spool/slurmctld
-chmod 755 -R /var/spool/slurmctld
+```console
+$ mkdir /var/spool/slurmctld
+$ chmod 755 -R /var/spool/slurmctld
+$ chmod 755 -R /var/spool/slurmctld
 ```
 
 PS: Remember to add cluster, qos (if nay) at first before restart `slurmctld`, otherwise failures will occur.
@@ -423,7 +423,7 @@ To make `memory.memsw.limit_in_bytes` take effect, an additional step is require
 GRUB_CMDLINE_LINUX_DEFAULT="cgroup_enable=memory swapaccount=1"
 ```
 then update the grub settings by
-```shell
-update-grub
+```console
+$ update-grub
 ```
 and reboot the server.
