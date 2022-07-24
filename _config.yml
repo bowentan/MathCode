@@ -51,6 +51,7 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
   - jekyll-paginate-multiple
+  - jekyll-sitemap
 paginate_multiple:
   - paginate: 5
     paginate_path: "/leetcode/page:num"

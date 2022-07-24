@@ -50,3 +50,5 @@ group :jekyll_plugins do
   # gem "jekyll-paginate-multiple", "~> 0.1.0"
   gem "jekyll-paginate-multiple"
 end
+
+gem "jekyll-sitemap"
